@@ -5,6 +5,7 @@ class Model:
     def __init__(self, board, logger):
         self.logger = logger
         self.board:pcbnew.BOARD = board
+        self.vias = []
         self.names:List[str] = []
         self.areas:List[pcbnew.ZONE] = []
 
@@ -16,3 +17,4 @@ class Model:
                 if name == '':
                     name = 'No Name ' + str(i)
                 self.names.append(name)
+    

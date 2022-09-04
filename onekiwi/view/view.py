@@ -1,3 +1,4 @@
+from cgitb import text
 import wx
 from .dialog import *
 from ..kicad.board import get_current_unit
@@ -14,3 +15,11 @@ class ViaStitchingView(ViaStitchingDialog):
             return window.FromDIP(size)
         else:
             return size
+
+    def SetUnitText(self, unit):
+        text = 'Unit: ' + unit
+        self.textUnit.SetLabelText(text)
+
+    def AddViasSize(self, vias):
+        self.choiceVia.Append(vias)
+        self.choiceVia.SetSelection(0)

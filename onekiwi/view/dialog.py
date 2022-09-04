@@ -120,30 +120,11 @@ class ViaStitchingDialog ( wx.Dialog ):
 
 		sbSizer4 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Via Patterns" ), wx.VERTICAL )
 
-		self.radioFill = wx.RadioButton( sbSizer4.GetStaticBox(), wx.ID_ANY, u"Fill", wx.DefaultPosition, wx.DefaultSize, 0 )
-		sbSizer4.Add( self.radioFill, 0, wx.ALL, 5 )
+		self.radioFillAligned = wx.RadioButton( sbSizer4.GetStaticBox(), wx.ID_ANY, u"Fill Aligned", wx.DefaultPosition, wx.DefaultSize, 0 )
+		sbSizer4.Add( self.radioFillAligned, 0, wx.ALL, 5 )
 
-		bSizer21 = wx.BoxSizer( wx.HORIZONTAL )
-
-
-		bSizer21.Add( ( 0, 0), 0, wx.LEFT, 20 )
-
-		self.radioAligned = wx.RadioButton( sbSizer4.GetStaticBox(), wx.ID_ANY, u"Aligned", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer21.Add( self.radioAligned, 0, wx.ALL, 5 )
-
-
-		sbSizer4.Add( bSizer21, 1, wx.EXPAND, 5 )
-
-		bSizer22 = wx.BoxSizer( wx.HORIZONTAL )
-
-
-		bSizer22.Add( ( 0, 0), 0, wx.LEFT, 20 )
-
-		self.radioStaggered = wx.RadioButton( sbSizer4.GetStaticBox(), wx.ID_ANY, u"Staggered", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer22.Add( self.radioStaggered, 0, wx.ALL, 5 )
-
-
-		sbSizer4.Add( bSizer22, 1, wx.EXPAND, 5 )
+		self.radioFillStaggered = wx.RadioButton( sbSizer4.GetStaticBox(), wx.ID_ANY, u"Fill Staggered", wx.DefaultPosition, wx.DefaultSize, 0 )
+		sbSizer4.Add( self.radioFillStaggered, 0, wx.ALL, 5 )
 
 		self.radioPerimeter = wx.RadioButton( sbSizer4.GetStaticBox(), wx.ID_ANY, u"Perimeter", wx.DefaultPosition, wx.DefaultSize, 0 )
 		sbSizer4.Add( self.radioPerimeter, 0, wx.ALL, 5 )
