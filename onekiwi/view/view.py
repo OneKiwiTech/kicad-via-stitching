@@ -19,7 +19,19 @@ class ViaStitchingView(ViaStitchingDialog):
     def SetUnitText(self, unit):
         text = 'Unit: ' + unit
         self.textUnit.SetLabelText(text)
+    
+    def SetNetText(self, net):
+        text = 'Net: ' + net
+        self.textNet.SetLabelText(text)
 
     def AddViasSize(self, vias):
         self.choiceVia.Append(vias)
         self.choiceVia.SetSelection(0)
+
+    def AddLayersName(self, names):
+        self.choiceLayer.Append(names)
+        self.choiceLayer.SetSelection(0)
+
+    def AddAreasName(self, names):
+        self.choiceArea.Append(names)
+        self.choiceArea.SetSelection(0)

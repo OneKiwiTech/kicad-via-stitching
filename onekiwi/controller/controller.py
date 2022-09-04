@@ -2,6 +2,7 @@ from ..model.model import Model
 from ..view.view import ViaStitchingView
 from .logtext import LogText
 import pcbnew
+import wx
 import sys
 import logging
 import logging.config
@@ -12,8 +13,19 @@ class Controller:
         self.board = board
         self.logger = self.init_logger(self.view.textLog)
         self.model = Model(self.board, self.logger)
+        self.area = None
         self.get_vias()
+        self.get_layers()
+        self.get_areas()
         self.logger.info('init done')
+        #self.logger.info(pcbnew.F_Cu)
+        #self.logger.info(pcbnew.B_Cu)
+
+        # Connect Events
+        self.view.choiceArea.Bind(wx.EVT_CHOICE, self.OnChoiceArea)
+        self.view.buttonApply.Bind(wx.EVT_BUTTON, self.OnButtonApply)
+        self.view.buttonClear.Bind(wx.EVT_BUTTON, self.OnButtonClear)
+        
 
     def Show(self):
         self.view.Show()
@@ -21,6 +33,42 @@ class Controller:
     def Close(self):
         self.view.Destroy()
 
+    def OnChoiceArea(self, event):
+        self.logger.info('OnChoiceArea')
+        index = event.GetEventObject().GetSelection()
+        area = self.model.areas[index]
+        net = str(area.GetNetname())
+        self.view.SetNetText(net)
+        if self.area != None:
+            self.area.ClearBrightened()
+        area.SetBrightened()
+        self.area = area
+        pcbnew.Refresh()
+
+    def OnButtonApply(self, event):
+        pass
+    
+    def OnButtonClear(self, event):
+        self.area.ClearBrightened()
+        self.area = None
+        pcbnew.Refresh()
+
+    def get_layers(self):
+        names = self.model.layers
+        self.view.AddLayersName(names)
+
+    def get_areas(self):
+        self.view.AddAreasName(self.model.names)
+        area = self.model.areas[0]
+        net = str(area.GetNetname())
+        self.view.SetNetText(net)
+        if self.area != None:
+            self.area.ClearBrightened()
+        area.SetBrightened()
+        self.area = area
+        pcbnew.Refresh()
+        
+    
     def get_vias(self):
         units = pcbnew.GetUserUnits()
         vias = self.board.GetDesignSettings().m_ViasDimensionsList
