@@ -1,8 +1,8 @@
 {
     "$schema": "https://go.kicad.org/pcm/schemas/v1",
-    "name": "Edit Multi Text",
-    "description": "Edit reference value on layer Silkscreen and Fabrication",
-    "description_full": "Edit reference value on layer Silkscreen and Fabrication",
+    "name": "Via Stitching",
+    "description": "Fill a selected copper area with a pattern of vias",
+    "description_full": "Fill a selected copper area with a pattern of vias",
     "identifier": "vn.onekiwi.via-stitching",
     "type": "plugin",
     "author": {

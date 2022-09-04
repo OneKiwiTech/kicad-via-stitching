@@ -13,4 +13,6 @@ class Model:
             if area.IsOnCopperLayer():
                 self.areas.append(area)
                 name = str(area.GetZoneName())
+                if name == '':
+                    name = 'No Name ' + str(i)
                 self.names.append(name)

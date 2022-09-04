@@ -1,8 +1,5 @@
 import pcbnew
 import os
-import sys
-import logging
-import tempfile
 from .controller.controller import Controller
 
 class ViaStitchingAction(pcbnew.ActionPlugin):
