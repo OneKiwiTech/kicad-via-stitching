@@ -21,6 +21,21 @@ def get_plugin_version():
 def get_kicad_build_version():
     return pcbnew.GetBuildVersion()
 
+def get_major_version(self):
+    version = str(pcbnew.Version())
+    major = int(version.split(".")[0])
+    return major
+
+def get_minor_version(self):
+    version = str(pcbnew.Version())
+    minor = int(version.split(".")[1])
+    return minor
+
+def get_patch_version(self):
+    version = str(pcbnew.Version())
+    patch = int(version.split(".")[2])
+    return patch
+
 def get_current_unit():
     unit = pcbnew.GetUserUnits()
     # pcbnew.EDA_UNITS_INCHES = 0

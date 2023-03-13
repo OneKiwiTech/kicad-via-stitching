@@ -1,6 +1,7 @@
 from ..model.model import Model
 from ..view.view import ViaStitchingView
 from .logtext import LogText
+from ..kicad.kicad import *
 import pcbnew
 import wx
 import sys
@@ -155,9 +156,19 @@ class Controller:
             y = top
             while y <= bottom:
                 p = pcbnew.wxPoint(x,y)
-                if area.HitTestFilledArea(layer, p, 0):
+                #HitTestFilledArea(ZONE self, PCB_LAYER_ID aLayer, VECTOR2I aRefPos, int aAccuracy=0) -> bool
+                #if area.HitTestFilledArea(layer, p, 0):
+                if kicad.get_major_version >= 7:
+                    filled_area = area.HitTestFilledArea(layer, pcbnew.VECTOR2I(p), 0)
+                else:
+                    filled_area = area.HitTestFilledArea(layer, p, 0)
+
+                if filled_area:
                     via = pcbnew.PCB_VIA(self.board)
-                    via.SetPosition(p)
+                    if kicad.get_major_version >= 7:
+                        via.SetPosition(p)
+                    else:
+                        via.SetPosition(pcbnew.VECTOR2I(p))
                     via.SetLayer(layer)
                     via.SetNetCode(netcode)
                     via.SetDrill(drillsize)
@@ -176,4 +187,5 @@ class Controller:
                 y += step_y
             x += step_x
 
+        self.area.ClearBrightened()
         pcbnew.Refresh()
