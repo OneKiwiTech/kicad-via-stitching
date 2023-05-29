@@ -1,7 +1,7 @@
 from ..model.model import Model
 from ..view.view import ViaStitchingView
 from .logtext import LogText
-from ..kicad.kicad import *
+from ..kicad.board import *
 import pcbnew
 import wx
 import sys
