@@ -24,6 +24,7 @@ class Controller:
         #self.logger.info(pcbnew.B_Cu)
 
         # Connect Events
+        self.view.choiceLayer.Bind(wx.EVT_CHOICE, self.OnChoiceLayer)
         self.view.choiceArea.Bind(wx.EVT_CHOICE, self.OnChoiceArea)
         self.view.buttonApply.Bind(wx.EVT_BUTTON, self.OnButtonApply)
         self.view.buttonClear.Bind(wx.EVT_BUTTON, self.OnButtonClear)
@@ -34,6 +35,12 @@ class Controller:
     
     def Close(self):
         self.view.Destroy()
+
+    def OnChoiceLayer(self, event):
+        self.logger.info('OnChoiceLayer')
+        layer = event.GetEventObject().GetSelection()
+        self.model.get_zone(layer)
+        self.get_areas()
 
     def OnChoiceArea(self, event):
         self.logger.info('OnChoiceArea')
@@ -60,6 +67,8 @@ class Controller:
         self.view.AddLayersName(names)
 
     def get_areas(self):
+        self.logger.info('get_areas')
+        self.logger.info(len(self.model.names))
         self.view.AddAreasName(self.model.names)
         area = self.model.areas[0]
         net = str(area.GetNetname())

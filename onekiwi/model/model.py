@@ -27,3 +27,17 @@ class Model:
         for name in get_layer_names(self.board):
             self.layers.append(name)
     
+    def get_zone(self, layer):
+        self.areas.clear()
+        self.names.clear()
+        if layer == len(self.layers):
+            layer = 31
+        for i in range(0, self.board.GetAreaCount()):
+            area:pcbnew.ZONE = self.board.GetArea(i)
+            if area.IsOnCopperLayer() and not area.GetIsRuleArea():
+                if layer == area.GetLayer():
+                    self.areas.append(area)
+                    name = str(area.GetZoneName())
+                    if name == '':
+                        name = 'No Name ' + str(i)
+                    self.names.append(name)

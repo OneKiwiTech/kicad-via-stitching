@@ -29,9 +29,11 @@ class ViaStitchingView(ViaStitchingDialog):
         self.choiceVia.SetSelection(0)
 
     def AddLayersName(self, names):
+        #self.choiceLayer.Clear()
         self.choiceLayer.Append(names)
         self.choiceLayer.SetSelection(0)
 
     def AddAreasName(self, names):
+        self.choiceArea.Clear()
         self.choiceArea.Append(names)
         self.choiceArea.SetSelection(0)
