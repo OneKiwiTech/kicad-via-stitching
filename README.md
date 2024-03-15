@@ -21,4 +21,5 @@ From there you can install the plugin via the GUI.
 Plugin code is licensed under MIT license, see LICENSE for more info.  
 KiCad Plugin code/structure from:
 - [viastitching](https://github.com/weirdgyn/viastitching)
+- [kicad-action-scripts](https://github.com/jsreynaud/kicad-action-scripts/tree/master/ViaStitching)
 - [wiki.wxpython.org](https://wiki.wxpython.org/ModelViewController)

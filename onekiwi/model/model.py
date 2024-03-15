@@ -1,6 +1,11 @@
-import pcbnew
 from typing import List
 from ..kicad.board import get_layer_names
+try:
+    import pcbnew
+except:
+    import sys
+    sys.path.insert(0,"/usr/lib/python3.8/site-packages/")
+    import pcbnew
 
 class Model:
     def __init__(self, board, logger):

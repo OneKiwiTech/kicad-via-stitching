@@ -1,4 +1,9 @@
-import pcbnew
+try:
+    import pcbnew
+except:
+    import sys
+    sys.path.insert(0,"/usr/lib/python3.8/site-packages/")
+    import pcbnew
 import os
 import re
 import wx
